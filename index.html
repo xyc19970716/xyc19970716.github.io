@@ -232,7 +232,7 @@
       
         
           <div class="post-wrapper">
-            <article class="post reveal ">
+            <article class="post reveal no-title">
   
 
 
@@ -244,7 +244,7 @@
         
   <h2 class="title">
     <a href="/2019/04/14/个人博客的诞生/">
-      个人博客的诞生
+      2019-04-14
     </a>
   </h2>
 
@@ -303,7 +303,84 @@
 
   <section class="article typo">
     <div class="article-entry" itemprop="articleBody">
-      
+      <p>title: 个人博客的诞生<br>date: 2019-04-14 16:39:02<br>tags:</p>
+<p><strong>相关步骤：</strong></p>
+<p>1、安装Node.js和配置好Node.js环境，打开cmd命令行，成功界面如下</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021222335756-1508643846.png" alt="img"></p>
+<p> 2、安装Git和配置好Git环境，安装成功的象征就是在电脑上任何位置<strong>鼠标右键</strong>能够出现如下两个选择</p>
+<p> <img src="/2019/04/14/个人博客的诞生/1108615-20171021222542474-1351750125.png" alt="img"></p>
+<p>注意：一般出于安全考虑，只有在Git Bash Here中才能进行Git的相关操作。如果需要在cmd命令行里调用Git，那么就要配置电脑的环境变量Path，或者在安装的时候选择use Git from the Windows Command Prompt。这个可有可无，影响不大，成功配置的界面如图</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021223101193-1524328031.png" alt="img"></p>
+<p> 3、Github账户注册和新建项目，项目必须要遵守格式：账户名.github.io，不然接下来会有很多麻烦。并且需要勾选Initialize this repository with a README</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021223639881-1998790649.png" alt="img"></p>
+<p>在建好的项目右侧有个settings按钮，点击它，向下拉到GitHub Pages，你会看到那边有个网址，访问它，你将会惊奇的发现该项目已经被部署到网络上，能够通过外网来访问它。 </p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021223928802-1978574025.png" alt="img"></p>
+<p> 4、安装Hexo，在自己认为合适的地方创个文件夹，我是在D盘建了一个blog文件夹。然后通过命令行进入到该文件夹里面</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021224442443-1196707159.png" alt="img"></p>
+<p>输入npm install hexo -g，开始安装Hexo</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021224910568-2096615217.png" alt="img"></p>
+<p>输入hexo -v，检查hexo是否安装成功</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021225015224-1426206003.png" alt="img"></p>
+<p>输入hexo init，初始化该文件夹（有点漫长的等待。。。）</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021230203912-509196411.png" alt="img"></p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021230241646-1660449756.png" alt="img"></p>
+<p>看到后面的“Start blogging with Hexo！”，激动有木有！！！！！</p>
+<p>输入npm install，安装所需要的组件</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021231521646-1099473727.png" alt="img"></p>
+<p>输入hexo g，首次体验Hexo</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021231705474-1404994153.png" alt="img"></p>
+<p> 输入hexo s，开启服务器，访问该网址，正式体验Hexo</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021231833912-663774637.png" alt="img"></p>
+<p>问题：假如页面一直无法跳转，那么可能端口被占用了。此时我们ctrl+c停止服务器，接着输入“hexo server -p 端口号”来改变端口号</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021232311912-1198771378.png" alt="img"></p>
+<p>那么出现如下图就成功了</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021232413224-1288183746.png" alt="img"></p>
+<p> 5、将Hexo与Github page联系起来，设置Git的user name和email（如果是第一次的话）</p>
+<p> <img src="/2019/04/14/个人博客的诞生/1108615-20171021233157224-1386748377.png" alt="img"></p>
+<p>上图是在其文件夹里面鼠标右键，点击Git Base Here。这里“feng”可以替换成自己的用户名，邮箱可以替换成自己的邮箱</p>
+<p>输入cd ~/.ssh，检查是否由.ssh的文件夹</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021233543052-76995831.png" alt="img"></p>
+<p>输入ls，列出该文件下的内容。下图说明存在</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021233630568-279882178.png" alt="img"></p>
+<p> 输入ssh-keygen -t rsa -C “<a href="mailto:929762930@qq.com" target="_blank" rel="noopener">929762930@qq.com</a>”，连续三个回车，生成密钥，最后得到了两个文件：id_rsa和id_rsa.pub（默认存储路径是：C:\Users\Administrator.ssh）。</p>
+<p> <img src="/2019/04/14/个人博客的诞生/1108615-20171021234107209-1205335399.png" alt="img"></p>
+<p> 输入eval “$(ssh-agent -s)”，添加密钥到ssh-agent</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021234314146-695835137.png" alt="img"></p>
+<p> 再输入ssh-add ~/.ssh/id_rsa，添加生成的SSH key到ssh-agent</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021234528552-610835964.png" alt="img"></p>
+<p> 登录Github，点击头像下的settings，添加ssh</p>
+<p> <img src="/2019/04/14/个人博客的诞生/1108615-20171021234636834-426105098.png" alt="img"></p>
+<p>新建一个new ssh key，将id_rsa.pub文件里的内容复制上去</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021234906724-1938556332.png" alt="img"></p>
+<p>输入ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>，测试添加ssh是否成功。如果看到Hi后面是你的用户名，就说明成功了</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021235116271-1521882533.png" alt="img"></p>
+<p><strong>问题：</strong>假如ssh-key配置失败，那么只要以下步骤就能完全解决</p>
+<p>首先，清除所有的key-pair<br>ssh-add -D<br>rm -r ~/.ssh<br>删除你在github中的public-key</p>
+<p>重新生成ssh密钥对<br>ssh-keygen -t rsa -C “<a href="mailto:xxx@xxx.com" target="_blank" rel="noopener">xxx@xxx.com</a>“</p>
+<p>接下来正常操作<br>在github上添加公钥public-key:<br>1、首先在你的终端运行 xclip -sel c ~/.ssh/id_rsa.pub将公钥内容复制到剪切板<br>2、在github上添加公钥时，直接复制即可<br>3、保存</p>
+<p>6、配置Deployment，在其文件夹中，找到_config.yml文件，修改repo值（在末尾）</p>
+<p> <img src="/2019/04/14/个人博客的诞生/1108615-20171021235812974-84318377.png" alt="img"></p>
+<p>repo值是你在github项目里的ssh（右下角）</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171021235722365-818312042.png" alt="img"></p>
+<p>7、新建一篇博客，在cmd执行命令：hexo new post “博客名”</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171022000227834-1991784353.png" alt="img"></p>
+<p> 这时候在文件夹_posts目录下将会看到已经创建的文件</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171022000508865-46787156.png" alt="img"></p>
+<p>在生成以及部署文章之前，需要安装一个扩展：npm install hexo-deployer-git –save</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171022001237943-657272339.png" alt="img"></p>
+<p>使用编辑器编好文章，那么就可以使用命令：hexo d -g，生成以及部署了</p>
+<p> <img src="/2019/04/14/个人博客的诞生/1108615-20171022001410662-1611125904.png" alt="img"></p>
+<p>部署成功后访问你的地址：http://用户名.github.io。那么将看到生成的文章</p>
+<p><img src="/2019/04/14/个人博客的诞生/1108615-20171022001738037-1195721153.png" alt="img"></p>
+<p> 好了，到此为止，最基本的也是最全面的hexo+github搭建博客完结。接下来是进阶的操作</p>
+<h3 id="hexo生成博文插入图片"><a href="#hexo生成博文插入图片" class="headerlink" title="hexo生成博文插入图片"></a>hexo生成博文插入图片</h3><p>步骤<br>把主页配置文件_config.yml 里的post_asset_folder:这个选项设置为true</p>
+<p>在你的hexo目录下执行这样一句话npm install hexo-asset-image –save，这是下载安装一个可以上传本地图片的插件，来自dalao：dalao的git</p>
+<p>等待一小段时间后，再运行hexo n “xxxx”来生成md博文时，/source/_posts文件夹内除了xxxx.md文件还有一个同名的文件夹 （当然也可以自己手动建）</p>
+<p>最后在xxxx.md中想引入图片时，先把图片复制到xxxx这个文件夹中，然后只需要在xxxx.md中按照markdown的格式引入图片：</p>
+<p><img src="/2019/04/14/个人博客的诞生/xxxx/图片名.jpg" alt="你想输入的替代文字"></p>
+<p>注意： xxxx是这个md文件的名字，也是同名文件夹的名字。只需要有文件夹名字即可，不需要有什么绝对路径。你想引入的图片就只需要放入xxxx这个文件夹内就好了，很像引用相对路径。</p>
+<p>最后检查一下，hexo g生成页面后，进入public\2017\02\26\index.html文件中查看相关字段，可以发现，html标签内的语句是<img src="/2019/04/14/个人博客的诞生/2017/02/26/xxxx/图片名.jpg">，而不是&lt;img src=”xxxx/图片名.jpg&gt;。这很重要，关乎你的网页是否可以真正加载你想插入的图片。</p>
+
       
     </div>
     
