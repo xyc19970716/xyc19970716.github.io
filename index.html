@@ -138,7 +138,7 @@
 			
 				<div class="m_search">
 					<form name="searchform" class="form u-search-form">
-						<input type="text" class="input u-search-input" placeholder="Search">
+						<input type="text" class="input u-search-input" placeholder="搜尋">
 						<i class="icon fas fa-search fa-fw"></i>
 					</form>
 				</div>
@@ -232,9 +232,108 @@
         
           
         
+          
+        
       
     
     
+      
+        
+          <div class="post-wrapper">
+            <article class="post reveal ">
+  
+
+
+  <section class="meta">
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2019/04/15/PAT-A1010题解/">
+      PAT A1010题解
+    </a>
+  </h2>
+
+
+      
+      <div class="new-meta-box">
+        
+          
+        
+          
+            
+  <div class="new-meta-item author">
+    <a href="http://yoursite.com" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>xyc19970716</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class="notlink">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-04-15</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>1010 Radix （25 分)</p>
+<p>Given a pair of positive integers, for example, 6 and 110, can this equation 6 = 110 be true? The answer is <code>yes</code>, if 6 is a decimal number and 110 is a binary number.</p>
+<p>Now for any pair of positive integers N1 and N2, your task is to find the radix of one number while that of the other is given.</p>
+<h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h3><p>Each input file contains one test case. Each case occupies a line which contains 4 positive integers:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">N1 N2 tag radix</span><br></pre></td></tr></table></figure>
+<p>Here <code>N1</code> and <code>N2</code> each has no more than 10 digits. A digit is less than its radix and is chosen from the set { 0-9, <code>a</code>-<code>z</code> } where 0-9 represent the decimal numbers 0-9, and <code>a</code>-<code>z</code> represent the decimal numbers 10-35. The last number <code>radix</code> is the radix of <code>N1</code> if <code>tag</code> is 1, or of <code>N2</code> if <code>tag</code> is 2.</p>
+<h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h3><p>For each test case, print in one line the radix of the other number so that the equation <code>N1</code> = <code>N2</code> is true. If the equation is impossible, print <code>Impossible</code>. If the solution is not unique, output the smallest possible radix.</p>
+<h3 id="Sample-Input-1"><a href="#Sample-Input-1" class="headerlink" title="Sample Input 1:"></a>Sample Input 1:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6 110 1 10</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Output-1"><a href="#Sample-Output-1" class="headerlink" title="Sample Output 1:"></a>Sample Output 1:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Input-2"><a href="#Sample-Input-2" class="headerlink" title="Sample Input 2:"></a>Sample Input 2:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 ab 1 2</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Output-2"><a href="#Sample-Output-2" class="headerlink" title="Sample Output 2:"></a>Sample Output 2:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Impossible</span><br></pre></td></tr></table></figure>
+<h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><p>题目给出了两个正数N1，N2。并给出了第tag个数是radix进制，让你求另一个数的进制。（0-9代表0-9数字，a-z代表10-35数字）如果没有结果，输出Impossible。如果有多个结果，输出最小的进制。</p>
+<p>①首先要用longlong类型应该不难看出来。<br>②试答案的时候不能顺序搜索，要用二分搜索。<br>③二分的边界要想对，最小的应该是数中最小的那个数+1，比如：123a，那么这个数最小的进制数为11（因为数中有a）。最大的边界应该为基准数的十进制值（例如：基准数的十进制为为1000000，另一个数为10，那么它可以是1000000进制的，也满足条件）。<br>④如果算的进制数太大时，可能会爆longlong，那么在计算中还要注意对溢出的判断（num&lt;0）</p>
+<h3 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">toNum</span><span class="params">(<span class="keyword">char</span> ch)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ch&gt;=<span class="string">'0'</span>&amp;&amp;ch&lt;=<span class="string">'9'</span>)</span><br><span class="line">		<span class="keyword">return</span> ch - <span class="string">'0'</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> ch - <span class="string">'a'</span> + <span class="number">10</span>;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">getNum</span><span class="params">(<span class="built_in">string</span> str, <span class="keyword">long</span> <span class="keyword">long</span> radix)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> wei = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> num = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; str[i]!=<span class="string">'\0'</span>; i++)</span><br><span class="line">	&#123;	</span><br><span class="line">		num = num + toNum(str[i]) * wei;</span><br><span class="line">		<span class="keyword">if</span> (num &lt; <span class="number">0</span> || wei &lt; <span class="number">0</span>)     <span class="comment">//需要判断这个，也许进制太大了呢 </span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		wei *= radix;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">string</span> N1,N2;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> num1 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> num2 = <span class="number">0</span>; </span><br><span class="line">	<span class="keyword">int</span> tag; </span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> radix;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; N1 &gt;&gt; N2 &gt;&gt; tag &gt;&gt; radix; </span><br><span class="line">	reverse(N1.begin(), N1.end());</span><br><span class="line">	reverse(N2.begin(), N2.end());</span><br><span class="line">	<span class="keyword">if</span>(N1 == N2)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, radix);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(tag == <span class="number">2</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		swap(N1, N2);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	num1 = getNum(N1, radix);</span><br><span class="line">	radix = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N2.size(); i++)</span><br><span class="line">	&#123;</span><br><span class="line">		radix = max(radix, toNum(N2[i])+<span class="number">1</span>);	</span><br><span class="line">	&#125; </span><br><span class="line">	</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> left, right, mid;</span><br><span class="line">	left = radix;</span><br><span class="line">	right = num1;</span><br><span class="line">	<span class="keyword">while</span>(right &gt;= left)</span><br><span class="line">	&#123;</span><br><span class="line">		mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> temp = getNum(N2, mid);</span><br><span class="line">		<span class="keyword">if</span>(temp &gt;= num1 || temp == <span class="number">-1</span>)</span><br><span class="line">			right = mid - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			left = mid + <span class="number">1</span>;</span><br><span class="line">			</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(num1 == getNum(N2, left))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, left);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Impossible\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class="post-wrapper">
@@ -975,19 +1074,19 @@
     </div>
   
   <br>
-  <div><p>Blog content follows the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License</a></p>
+  <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
 </div>
   <div>
-    Use
+    本站使用
     <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a>
-    as theme
+    作為主題
     
-      , 
-      total visits
+      ，
+      總訪問量為
       <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
-      times
+      次
     
-    . 
+    。
   </div>
 </footer>
 <script>setLoadingBarProgress(80);</script>
@@ -1067,15 +1166,15 @@
 <!-- 复制 -->
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
-  let COPY_SUCCESS = "Copied";
-  let COPY_FAILURE = "Copy failed";
+  let COPY_SUCCESS = "複製成功";
+  let COPY_FAILURE = "複製失敗";
   /*页面载入完成后，创建复制按钮*/
   !function (e, t, a) {
     /* code */
     var initCopyCode = function(){
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '  <i class="fa fa-copy"></i><span>Copy</span>';
+      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
       copyHtml += '</button>';
       $(".highlight .code pre").before(copyHtml);
       var clipboard = new ClipboardJS('.btn-copy', {
